@@ -19,9 +19,20 @@ app.get('/categories', (req, res)=>{
 
 app.get('/courses/:id', (req, res)=>{
     const id = req.params.id;
-    const selectedCourses = allCourses.filter(course => course.category_id == id)
+    if(id==4){
+        res.send(allCourses);
+    }
+    else{
+        const selectedCourses = allCourses.filter(course => course.category_id == id)
     res.send(selectedCourses);
+    }
     
+})
+
+app.get('/course-details/:id', (req, res)=>{
+    const id = req.params.id;
+    const courseSelected = allCourses.find(course => course.id == id)
+    res.send(courseSelected);
 })
 
 app.listen(port, () => {
